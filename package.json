@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@zag-js/core": "^0.2.10",
+    "@zag-js/react": "^0.3.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

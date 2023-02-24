@@ -5,6 +5,7 @@ specifiers:
   '@types/react-dom': ^18.0.10
   '@vitejs/plugin-react': ^3.1.0
   '@zag-js/core': ^0.2.10
+  '@zag-js/react': ^0.3.10
   react: ^18.2.0
   react-dom: ^18.2.0
   typescript: ^4.9.3
@@ -12,6 +13,7 @@ specifiers:
 
 dependencies:
   '@zag-js/core': 0.2.10
+  '@zag-js/react': 0.3.10_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
 
@@ -533,10 +535,30 @@ packages:
       klona: 2.0.6
     dev: false
 
+  /@zag-js/react/0.3.10_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-H/Yb0bpyZDiio4EXN76Huns00qzTAjfnaizo9j4B19E6iFXkA0XZ3acMrc2IQmUKtA6MPs5Xn2c2HZFkGKqeDQ==}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+    dependencies:
+      '@zag-js/core': 0.2.10
+      '@zag-js/store': 0.2.8
+      '@zag-js/types': 0.3.4
+      proxy-compare: 2.5.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /@zag-js/store/0.2.8:
     resolution: {integrity: sha512-QgBnbYjb5jvcTt0+JCoPJ9YKM9vP1/RR78mkT6fWCIM0N8hnZu4MzQPVKxiopxZ8XIrDbUjFWlJLzL83uiYv2g==}
     dependencies:
       proxy-compare: 2.5.0
+    dev: false
+
+  /@zag-js/types/0.3.4:
+    resolution: {integrity: sha512-KkZOMNqFZA0TaVF70O6WIRJPWTcDyRQjhXLDkLVfo99gwJdsC1bMZWfjrCiR8g1CfzvCyGNSWzdArIgzTJVEMA==}
+    dependencies:
+      csstype: 3.1.1
     dev: false
 
   /ansi-styles/3.2.1:
@@ -586,7 +608,6 @@ packages:
 
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
-    dev: true
 
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
