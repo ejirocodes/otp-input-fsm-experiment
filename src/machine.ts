@@ -64,7 +64,16 @@ export const machine = createMachine<MachineContext, MachineState>(
       setFocusedValue(context, event) {
         context.value[context.focusedIndex] = event.value;
       },
-
+      clearFocusedValue(context) {
+        context.value[context.focusedIndex] = "";
+      },
+      focusPreviousInput(context) {
+        const previousIndex = (context.focusedIndex = Math.max(
+          0,
+          context.focusedIndex - 1
+        ));
+        context.focusedIndex = previousIndex;
+      },
       focusNextInput(context, event) {
         const nextIndex = Math.min(
           context.focusedIndex + 1,
@@ -82,7 +91,7 @@ export const machine = createMachine<MachineContext, MachineState>(
         );
 
         const input = inputElements[context.focusedIndex];
-        input?.focus();
+        requestAnimationFrame(() => input?.focus());
       },
     },
   }
