@@ -1,24 +1,22 @@
-import "./App.css";
 import { useMachine } from "@zag-js/react";
+import "./App.css";
 import { machine } from "./machine";
 
 const inputs = [...Array.from({ length: 4 }).keys()];
+
 function App() {
   const [state, send] = useMachine(machine);
-
-  const { focusedIndex, value } = state.context;
-  const { type } = state.event;
+  const { value } = state.context;
 
   return (
     <div className="App">
-      <pre>{JSON.stringify({ value, focusedIndex, event: type })}</pre>
       <div data-part="container">
-        <label htmlFor="">Enter verification</label>
+        <label>Enter verification</label>
         <div data-part="input-group">
           {inputs.map((index) => (
             <input
-              data-part="input"
               key={index}
+              data-part="input"
               value={value[index]}
               onChange={(event) => {
                 const { value } = event.target;
@@ -28,23 +26,30 @@ function App() {
                 send({ type: "FOCUS", index });
               }}
               onBlur={() => {
-                send({ type: "BLUR", index });
+                send({ type: "BLUR" });
               }}
               onKeyDown={(event) => {
-                if (event.key === "Backspace") {
+                const { key } = event;
+                if (key === "Backspace") {
                   send({ type: "BACKSPACE", index });
                 }
               }}
               onPaste={(event) => {
-                const value = event.clipboardData.getData("text/plain");
+                const value = event.clipboardData.getData("Text");
                 send({ type: "PASTE", value, index });
               }}
             />
           ))}
         </div>
       </div>
+      <pre>{stringify(state)}</pre>
     </div>
   );
+}
+
+function stringify(state: Record<string, any>) {
+  const { value, event, context } = state;
+  return JSON.stringify({ state: value, event, context }, null, 2);
 }
 
 export default App;
