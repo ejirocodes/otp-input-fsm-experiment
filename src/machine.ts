@@ -93,6 +93,20 @@ export const machine = createMachine<MachineContext, MachineState>(
         const input = inputElements[context.focusedIndex];
         requestAnimationFrame(() => input?.focus());
       },
+      setPastedValue(context, event) {
+        const pastedValue: string[] = event.value
+          .split("")
+          .slice(0, context.value.length);
+
+        pastedValue.forEach((value, index) => (context.value[index] = value));
+      },
+      focusedLastEmptyInput(context) {
+        const index = context.value.findIndex((val) => val === "");
+        const lastIndex = context.value.length - 1;
+
+        context.focusedIndex = index === -1 ? lastIndex : index;
+        console.log({ index });
+      },
     },
   }
 );
