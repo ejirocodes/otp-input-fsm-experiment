@@ -2,11 +2,13 @@ import { useMachine } from "@zag-js/react";
 import "./App.css";
 import { machine } from "./machine";
 
-const inputs = [...Array.from({ length: 4 }).keys()];
-
 function App() {
-  const [state, send] = useMachine(machine);
+  const [state, send] = useMachine(machine({ numberOfFields: 6, onComplete }));
   const { value } = state.context;
+
+  function onComplete(value: string[]) {
+    console.log({ value });
+  }
 
   return (
     <div className="App">
@@ -27,7 +29,7 @@ function App() {
           </label>
           <input type="hidden" name="pincode" value={value.join("")} />
           <div data-part="input-group">
-            {inputs.map((index) => (
+            {value.map((_, index) => (
               <input
                 key={index}
                 data-part="input"
