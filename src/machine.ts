@@ -62,7 +62,12 @@ export const machine = createMachine<MachineContext, MachineState>(
       },
 
       setFocusedValue(context, event) {
-        context.value[context.focusedIndex] = event.value;
+        const eventValue: string = event.value;
+        const focusedValue = context.value[context.focusedIndex];
+
+        const nextValue = getNextValue(focusedValue, eventValue);
+
+        context.value[context.focusedIndex] = nextValue;
       },
       clearFocusedValue(context) {
         context.value[context.focusedIndex] = "";
@@ -97,7 +102,6 @@ export const machine = createMachine<MachineContext, MachineState>(
         const pastedValue: string[] = event.value
           .split("")
           .slice(0, context.value.length);
-
         pastedValue.forEach((value, index) => (context.value[index] = value));
       },
       focusedLastEmptyInput(context) {
@@ -105,8 +109,18 @@ export const machine = createMachine<MachineContext, MachineState>(
         const lastIndex = context.value.length - 1;
 
         context.focusedIndex = index === -1 ? lastIndex : index;
-        console.log({ index });
       },
     },
   }
 );
+
+function getNextValue(focusedValue: string, eventValue: string) {
+  let nextValue = eventValue;
+  if (focusedValue[0] === eventValue[0]) {
+    nextValue = eventValue[1];
+  } else if (focusedValue[0] === eventValue[1]) {
+    nextValue = eventValue[0];
+  }
+
+  return nextValue;
+}

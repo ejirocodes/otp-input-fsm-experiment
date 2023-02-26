@@ -18,6 +18,7 @@ function App() {
               key={index}
               data-part="input"
               value={value[index]}
+              maxLength={2}
               onChange={(event) => {
                 const { value } = event.target;
                 send({ type: "INPUT", index, value });
