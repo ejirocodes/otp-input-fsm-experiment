@@ -11,7 +11,13 @@ function App() {
   return (
     <div className="App">
       <div data-part="container">
-        <label>Enter verification</label>
+        <label
+          onClick={() => {
+            send({ type: "LABEL_CLICK" });
+          }}
+        >
+          Enter verification
+        </label>
         <div data-part="input-group">
           {inputs.map((index) => (
             <input

@@ -41,6 +41,9 @@ export const machine = createMachine<MachineContext, MachineState>(
             target: "focused",
             actions: ["setFocusedIndex"],
           },
+          LABEL_CLICK: {
+            actions: ["focusFirstInput"],
+          },
         },
       },
       focused: {
@@ -97,6 +100,9 @@ export const machine = createMachine<MachineContext, MachineState>(
         );
 
         context.focusedIndex = nextIndex;
+      },
+      focusFirstInput(context) {
+        context.focusedIndex = 0;
       },
       executeFocus(context) {
         const inputGroup = document.querySelector("[data-part=input-group]");
