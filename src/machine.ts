@@ -8,13 +8,15 @@ type MachineState = {
 
 // context
 type MachineContext = {
+  name?: string;
   focusedIndex: number;
   readonly isCompleted: boolean;
   value: string[];
   onComplete?: (value: string[]) => void;
 };
 
-type MachineOptions = {
+export type MachineOptions = {
+  name?: string;
   value?: string[];
   onComplete?: (value: string[]) => void;
   numberOfFields: number;
