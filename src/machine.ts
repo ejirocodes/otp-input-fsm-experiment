@@ -91,18 +91,23 @@ export const machine = createMachine<MachineContext, MachineState>(
         const inputGroup = document.querySelector("[data-part=input-group]");
         if (!inputGroup || context.focusedIndex === -1) return;
 
-        const inputElements = Array.from<HTMLInputElement>(
-          inputGroup.querySelectorAll("[data-part=input]")
+        const inputElements = Array.from(
+          inputGroup.querySelectorAll<HTMLInputElement>("[data-part=input]")
         );
 
         const input = inputElements[context.focusedIndex];
-        requestAnimationFrame(() => input?.focus());
+        requestAnimationFrame(() => {
+          input?.focus();
+        });
       },
       setPastedValue(context, event) {
         const pastedValue: string[] = event.value
           .split("")
           .slice(0, context.value.length);
-        pastedValue.forEach((value, index) => (context.value[index] = value));
+
+        pastedValue.forEach((value, index) => {
+          context.value[index] = value;
+        });
       },
       focusedLastEmptyInput(context) {
         const index = context.value.findIndex((val) => val === "");
