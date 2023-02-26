@@ -10,6 +10,12 @@ pre {
   margin-top: 50px;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 [data-part="container"] {
   display: flex;
   flex-direction: column;
